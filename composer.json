@@ -1,0 +1,28 @@
+{
+    "name": "juvenal/letexto",
+    "description": "A laravel package to integrate Letexto Application API",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Juvenal PENGELE",
+            "email": "juvenalpengele@arolitec.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.1",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Letexto\\": "src/Letexto/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}

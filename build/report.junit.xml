@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="1" assertions="0" errors="0" warnings="1" failures="0" skipped="0" time="0.003012">
+    <testsuite name="Test Suite" tests="1" assertions="0" errors="0" warnings="1" failures="0" skipped="0" time="0.003012">
+      <testsuite name="Tests\CreateCampaignTest" file="/home/juvenal/Lab/Projects/letexto/tests/CreateCampaignTest.php" tests="1" assertions="0" errors="0" warnings="1" failures="0" skipped="0" time="0.003012">
+        <testcase name="Warning" assertions="0" time="0.003012">
+          <warning type="PHPUnit\Framework\Warning">Warning
+No tests found in class "Tests\CreateCampaignTest".
+
+</warning>
+        </testcase>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
