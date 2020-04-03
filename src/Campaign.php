@@ -15,23 +15,41 @@ final class Campaign
         "campaignType" => "",
         "recipientSource" => "",
         "groupId" => "",
-        "destination" => ""
+        "destination" => "",
     ];
     private array $recipients = [];
     private string $message = "";
     private ?array $schedules = null;
+    private string $name = "";
+    private array $queryParams = [];
 
-    public function __construct(array $nameAttribute)
+    public function __construct(array $nameAttribute = [])
+    {
+        $this->name = $nameAttribute["name"] ?? "";
+    }
+
+    /**
+     * @param $methodName
+     * @param $arguments
+     * @return mixed
+     */
+    public static function __callStatic($methodName, $arguments)
+    {
+        $instance = new CampaignHttpRequest;
+
+        if(method_exists($instance, $methodName)) {
+            return $instance->$methodName($arguments);
+        }
+
+        throw new \BadMethodCallException($methodName . " does not exist on the instance");
+    }
+
+    public static function create(array $nameAttribute) : Campaign
     {
         if(! isset($nameAttribute['name'])) {
             throw new \InvalidArgumentException('You must provide a name of the campaign');
         }
 
-        $this->attributes["name"] = $nameAttribute["name"];
-    }
-
-    public static function create(array $nameAttribute) : Campaign
-    {
         return new static($nameAttribute);
     }
 
@@ -74,7 +92,8 @@ final class Campaign
         $mergedAttributes = array_merge($this->attributes, [
             "message" => $this->message,
             "recipients" => $this->recipients,
-            "sendAt" => $this->schedules
+            "sendAt" => $this->schedules,
+            "name"  => $this->name
         ]);
 
         $this->applyValidator($mergedAttributes);

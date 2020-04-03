@@ -7,6 +7,41 @@ use Letexto\Exception\GatewayException;
 
 class CampaignHttpRequest extends HttpRequest
 {
+    const BASE_URI = "/campaigns";
+
+    /**
+     * @return string
+     * @throws GatewayException
+     */
+    public function fetchAll()
+    {
+        try {
+            $response = $this->httpClient->get($this->getUri(), $this->params());
+
+            return $this->decodeResponse($response);
+        } catch (\Exception $exception) {
+            $this->handleException($exception);
+        }
+    }
+
+    /**
+     * @param $campaignId
+     * @return string
+     * @throws GatewayException
+     */
+    public function fetch($campaignId)
+    {
+        $uri = "/campaigns/$campaignId";
+        try {
+            $response = $this->httpClient->get($uri, $this->params());
+
+            return $this->decodeResponse($response);
+        } catch (\Exception $exception) {
+            $this->handleException($exception);
+        }
+    }
+
+
     /**
      * @return string
      * @throws GatewayException
@@ -14,7 +49,7 @@ class CampaignHttpRequest extends HttpRequest
     public function store()
     {
         try {
-            $response = $this->httpClient->post("/campaigns", $this->params());
+            $response = $this->httpClient->post(self::BASE_URI, $this->params());
             $campaign = json_decode($this->decodeResponse($response));
 
             return $this->schedule($campaign);

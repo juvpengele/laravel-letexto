@@ -1,7 +1,8 @@
 {
-    "name": "juvenal/letexto",
+    "name": "juvpengele/laravel-letexto",
     "description": "A laravel package to integrate Letexto Application API",
-    "type": "library",
+    "type": "package",
+    "version": "0.1.0",
     "authors": [
         {
             "name": "Juvenal PENGELE",

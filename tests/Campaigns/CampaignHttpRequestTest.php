@@ -31,4 +31,16 @@ class CampaignHttpRequestTest extends TestCase
 
         $this->assertNotEmpty($campaignHttpRequest->getParams());
     }
+
+    /**
+     * @test
+     */
+    public function query_params_can_be_added()
+    {
+        $campaignHttpRequest = new CampaignHttpRequest;
+        $campaignHttpRequest->filterBy(['status' => 'sent', 'from' => '2020-02-11 00:00:00']);
+
+        $this->assertNotEmpty($campaignHttpRequest->getQueryParams());
+        $this->assertCount(2, $campaignHttpRequest->getQueryParams());
+    }
 }

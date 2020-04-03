@@ -10,8 +10,19 @@ use Letexto\Exception\GatewayException;
 
 class HttpRequest
 {
+    const BASE_URI = "";
+
     protected ?Client $httpClient = null;
     protected array $params = [];
+    protected array $queryParams = [];
+
+    /**
+     * @return array
+     */
+    public function getQueryParams(): array
+    {
+        return $this->queryParams;
+    }
 
     public function __construct()
     {
@@ -75,4 +86,26 @@ class HttpRequest
         Log::error($message);
         throw new GatewayException($exception);
     }
+
+    public function filterBy(array $queryParams = [])
+    {
+        $this->queryParams = $queryParams;
+        return $this;
+    }
+
+    public function getFormattedQueryParams()
+    {
+        return http_build_query($this->getQueryParams());
+    }
+
+    public function getUri()
+    {
+        if(empty($this->getFormattedQueryParams())) {
+            return self::BASE_URI;
+        }
+
+        return self::BASE_URI . "?" .$this->getFormattedQueryParams();
+    }
+
+
 }
