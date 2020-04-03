@@ -51,7 +51,7 @@ class CampaignHttpRequest extends HttpRequest
     {
         try {
             $response = $this->httpClient->post(static::$BASE_URI, $this->params());
-            $campaign = json_decode($this->decodeResponse($response));
+            $campaign = $this->decodeResponse($response)->toObject();
 
             return $this->schedule($campaign);
 

@@ -1,9 +1,9 @@
 {
     "name": "juvpengele/laravel-letexto",
     "license": "MIT",
-    "description": "A laravel package to integrate Letexto Application API",
+    "description": "A Laravel package to integrate Letexto Application API",
     "type": "package",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "authors": [
         {
             "name": "Juvenal PENGELE",
@@ -37,5 +37,8 @@
                 "Letexto\\ServiceProvider"
             ]
         }
+    },
+    "config": {
+        "optimize-autoloader": true,
     }
 }

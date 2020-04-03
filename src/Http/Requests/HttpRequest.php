@@ -79,9 +79,9 @@ class HttpRequest
     /**
      * Set the body of the response in a correct format.
      * @param $response
-     * @return string
+     * @return Response
      */
-    protected function decodeResponse($response)
+    protected function decodeResponse($response) : Response
     {
         $content = (string) $response->getBody();
         return new Response($content);
