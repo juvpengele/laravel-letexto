@@ -5,6 +5,7 @@ namespace Letexto\Http\Requests;
 
 use Letexto\Exception\GatewayException;
 
+
 class CampaignHttpRequest extends HttpRequest
 {
     protected static string $BASE_URI = "campaigns";
@@ -15,7 +16,6 @@ class CampaignHttpRequest extends HttpRequest
      */
     public function fetchAll()
     {
-
         try {
             $response = $this->httpClient->get($this->getUri(), $this->params());
 
@@ -32,7 +32,7 @@ class CampaignHttpRequest extends HttpRequest
      */
     public function fetch($campaignId)
     {
-        $uri = "/campaigns/$campaignId";
+        $uri = static::$BASE_URI . "/$campaignId";
         try {
             $response = $this->httpClient->get($uri, $this->params());
 

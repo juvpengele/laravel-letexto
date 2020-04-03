@@ -100,12 +100,11 @@ class HttpRequest
 
     public function getUri()
     {
-        if(empty($this->getFormattedQueryParams())) {
+        if(empty($this->params)) {
             return static::$BASE_URI;
         }
 
         return static::$BASE_URI . "?" .$this->getFormattedQueryParams();
     }
-
 
 }
