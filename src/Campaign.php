@@ -38,7 +38,7 @@ final class Campaign
         $instance = new CampaignHttpRequest;
 
         if(method_exists($instance, $methodName)) {
-            return $instance->$methodName($arguments);
+            return $instance->$methodName(...$arguments);
         }
 
         throw new \BadMethodCallException($methodName . " does not exist on the instance");
