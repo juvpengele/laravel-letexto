@@ -49,7 +49,7 @@ class CampaignHttpRequest extends HttpRequest
     public function store()
     {
         try {
-            $response = $this->httpClient->post(self::BASE_URI, $this->params());
+            $response = $this->httpClient->post(static::$BASE_URI, $this->params());
             $campaign = json_decode($this->decodeResponse($response));
 
             return $this->schedule($campaign);
@@ -67,7 +67,7 @@ class CampaignHttpRequest extends HttpRequest
     protected function schedule($campaign)
     {
         try {
-            $response = $this->httpClient->post( '/campaigns/' . $campaign->id . '/schedules');
+            $response = $this->httpClient->post( static::$BASE_URI. "/$campaign->id/schedules");
 
             return $this->decodeResponse($response);
         }  catch (\Exception $exception) {
