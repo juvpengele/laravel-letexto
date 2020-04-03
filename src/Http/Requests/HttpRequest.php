@@ -7,6 +7,7 @@ namespace Letexto\Http\Requests;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 use Letexto\Exception\GatewayException;
+use Letexto\Http\Response;
 
 class HttpRequest
 {
@@ -16,7 +17,24 @@ class HttpRequest
     protected array $params = [];
     protected array $queryParams = [];
 
+
+
+    public function __construct()
+    {
+        $this->httpClient = new Client(["base_uri" => config("letexto.api_url")]);
+    }
+
     /**
+     * Getter of the HTTP Client.
+     * @return Client|null
+     */
+    public function getHttpClient()
+    {
+        return $this->httpClient;
+    }
+
+    /**
+     * Getter of the query params attribute
      * @return array
      */
     public function getQueryParams(): array
@@ -24,16 +42,10 @@ class HttpRequest
         return $this->queryParams;
     }
 
-    public function __construct()
-    {
-        $this->httpClient = new Client(["base_uri" => config("letexto.api_url")]);
-    }
-
-    public function getHttpClient()
-    {
-        return $this->httpClient;
-    }
-
+    /**
+     * Set up of the default parameters to be sent
+     * @return array
+     */
     public function defaultParams() : array
     {
         return [
@@ -44,12 +56,21 @@ class HttpRequest
         ];
     }
 
+    /**
+     * Setter of the params attribute
+     * @param array $params
+     * @return $this
+     */
     public function addParams(array $params = [])
     {
         $this->params = $params;
         return $this;
     }
 
+    /**
+     * Getter of the params attribute
+     * @return array
+     */
     public function getParams() : array
     {
         return $this->params;
@@ -62,7 +83,8 @@ class HttpRequest
      */
     protected function decodeResponse($response)
     {
-        return (string) $response->getBody();
+        $content = (string) $response->getBody();
+        return new Response($content);
     }
 
     protected function additionalParams() : array
@@ -100,7 +122,8 @@ class HttpRequest
 
     public function getUri()
     {
-        if(empty($this->params)) {
+
+        if(empty($this->queryParams)) {
             return static::$BASE_URI;
         }
 
