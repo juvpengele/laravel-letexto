@@ -2,9 +2,9 @@
 
 namespace Letexto;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
-class ServiceProvider extends ServiceProvider
+class ServiceProvider extends LaravelServiceProvider
 {
     public function register()
     {
