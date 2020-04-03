@@ -72,7 +72,7 @@ class HttpRequest
 
     public function params()
     {
-        return array_merge($this->params, $this->additionalParams());
+        return array_merge($this->defaultParams(), $this->additionalParams());
     }
 
     /**

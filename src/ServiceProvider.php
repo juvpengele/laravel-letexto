@@ -15,8 +15,5 @@ class ServiceProvider extends LaravelServiceProvider
 
     public function boot()
     {
-        $this->publishes([
-            __DIR__."/config/letexto.php" => config_path('letexto.php'),
-        ]);
     }
 }

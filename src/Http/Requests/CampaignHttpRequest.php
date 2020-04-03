@@ -7,7 +7,7 @@ use Letexto\Exception\GatewayException;
 
 class CampaignHttpRequest extends HttpRequest
 {
-    protected static string $BASE_URI = "/campaigns";
+    protected static string $BASE_URI = "campaigns";
 
     /**
      * @return string
@@ -15,6 +15,7 @@ class CampaignHttpRequest extends HttpRequest
      */
     public function fetchAll()
     {
+
         try {
             $response = $this->httpClient->get($this->getUri(), $this->params());
 
