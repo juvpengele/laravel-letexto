@@ -4,7 +4,7 @@ namespace Letexto;
 
 use Illuminate\Support\ServiceProvider;
 
-class LetextoServiceProvider extends ServiceProvider
+class ServiceProvider extends ServiceProvider
 {
     public function register()
     {
@@ -14,5 +14,9 @@ class LetextoServiceProvider extends ServiceProvider
     }
 
     public function boot()
-    {}
+    {
+        $this->publishes([
+            __DIR__."/config/letexto.php" => config_path('letexto.php'),
+        ]);
+    }
 }
