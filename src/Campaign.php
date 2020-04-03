@@ -4,6 +4,7 @@
 namespace Letexto;
 
 
+use Letexto\Http\Requests\CampaignHttpRequest;
 use Letexto\validators\CampaignValidator;
 
 final class Campaign
@@ -40,7 +41,7 @@ final class Campaign
      */
     public function withAttributes(array $attributes) : Campaign
     {
-        $this->attributes = array_merge($attributes, $this->attributes);
+        $this->attributes = array_merge($this->attributes, $attributes);
 
         return $this;
     }
@@ -63,13 +64,29 @@ final class Campaign
         return $this;
     }
 
+    /**
+     * Send a campaign
+     * @return mixed
+     * @throws Exception\GatewayException
+     */
     public function send()
     {
-        $this->applyValidator();
+        $mergedAttributes = array_merge($this->attributes, [
+            "message" => $this->message,
+            "recipients" => $this->recipients,
+            "sendAt" => $this->schedules
+        ]);
+
+        $this->applyValidator($mergedAttributes);
+
+        $campaignHttpRequest = new CampaignHttpRequest();
+        $response = $campaignHttpRequest->addParams($mergedAttributes)->store();
+
+        return json_decode($response, true);
     }
 
     /**
-     *
+     * Getter of the attributes attribute
      * @return array
      */
     public function getAttributes() : array
@@ -78,6 +95,7 @@ final class Campaign
     }
 
     /**
+     * Getter of the recipients attribute
      * @return array
      */
     public function getRecipients(): array
@@ -85,26 +103,35 @@ final class Campaign
         return $this->recipients;
     }
 
+    /**
+     * Getter of the schedules attribute
+     * @return array|null
+     */
     public function getSchedules()
     {
         return $this->schedules;
     }
 
+    /**
+     * Getter of the message attribute
+     * @return string
+     */
     public function getMessage() : string
     {
         return $this->message;
     }
 
-    private function applyValidator()
+    /**
+     * Set the validation of all attributes to be created
+     * @param $attributes
+     * @return bool
+     */
+    private function applyValidator($attributes)
     {
-        $allAttributes = array_merge($this->attributes, [
-            "message" => $this->message,
-            "recipients" => $this->recipients,
-            "sendAt" => $this->schedules
-        ]);
-
-        $validator = new CampaignValidator($allAttributes);
+        $validator = new CampaignValidator($attributes);
         $validator->handle();
+
+        return true;
     }
 
 }

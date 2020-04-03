@@ -121,6 +121,7 @@ class CreateCampaignValidatorTest extends TestCase
         ]);
         $this->assertTrue($validator->handle());
 
+
         $this->expectException(\InvalidArgumentException::class);
         $validator = new CampaignValidator(["recipients" => []]);
         $validator->handle();
@@ -139,11 +140,10 @@ class CreateCampaignValidatorTest extends TestCase
     /** @test */
     public function schedules_can_be_set()
     {
-        $validator = new CampaignValidator(["schedules" => [
-            "2020-02-11 00:00:00"
-        ]]);
+        $validator = new CampaignValidator([
+            "schedules" => [ "2020-02-11 00:00:00" ]
+        ]);
         $this->assertTrue($validator->handle());
-
 
         $validator = new CampaignValidator(["schedules" => null]);
         $this->assertTrue($validator->handle());

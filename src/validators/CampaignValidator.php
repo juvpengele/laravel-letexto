@@ -23,7 +23,7 @@ class CampaignValidator extends Validator
 
     protected function validateRecipientSource($value)
     {
-        return !! $value && ( $value === "CUSTOM" || $value === "GROUP" || $value === "FILE");
+        return !! $value && ($value === "CUSTOM" || $value === "GROUP" || $value === "FILE");
     }
 
     protected function validateDestination($value)

@@ -22,11 +22,11 @@ class Validator
             $method = $this->getValidationMethodName($key);
 
             if(! method_exists($this, $method)) {
-                throw new \BadMethodCallException("Please you must provide " . $method . " method");
+               continue;
             }
 
             if(! $this->$method($attribute)) {
-                throw new \InvalidArgumentException("Please provide a value for " . $key);
+                throw new \InvalidArgumentException("Please provide a valid value for " . $key);
             }
         }
 
