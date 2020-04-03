@@ -7,7 +7,7 @@ use Letexto\Exception\GatewayException;
 
 class CampaignHttpRequest extends HttpRequest
 {
-    const BASE_URI = "/campaigns";
+    protected static string $BASE_URI = "/campaigns";
 
     /**
      * @return string

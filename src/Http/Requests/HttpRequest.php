@@ -10,7 +10,7 @@ use Letexto\Exception\GatewayException;
 
 class HttpRequest
 {
-    const BASE_URI = "";
+    protected static string $BASE_URI = "";
 
     protected ?Client $httpClient = null;
     protected array $params = [];
@@ -101,10 +101,10 @@ class HttpRequest
     public function getUri()
     {
         if(empty($this->getFormattedQueryParams())) {
-            return self::BASE_URI;
+            return static::$BASE_URI;
         }
 
-        return self::BASE_URI . "?" .$this->getFormattedQueryParams();
+        return static::$BASE_URI . "?" .$this->getFormattedQueryParams();
     }
 
 
