@@ -3,7 +3,7 @@
     "license": "MIT",
     "description": "A Laravel package to integrate Letexto Application API",
     "type": "package",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "authors": [
         {
             "name": "Juvenal PENGELE",
@@ -39,6 +39,6 @@
         }
     },
     "config": {
-        "optimize-autoloader": true,
+        "optimize-autoloader": true
     }
 }
