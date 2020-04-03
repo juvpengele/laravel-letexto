@@ -14,7 +14,5 @@ class LetextoServiceProvider extends ServiceProvider
     }
 
     public function boot()
-    {
-
-    }
+    {}
 }

@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Letexto\\": "src/Letexto/"
+            "Letexto\\": "src/"
         }
     },
     "autoload-dev": {
