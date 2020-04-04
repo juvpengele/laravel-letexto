@@ -4,27 +4,30 @@
 namespace Letexto\Http;
 
 
+use Psr\Http\Message\ResponseInterface;
+
 class Response
 {
-    protected string $content = "";
+    protected ResponseInterface $response;
 
-    public function __construct(string $content)
+    public function __construct(ResponseInterface $response)
     {
-        $this->content = $content;
+        $this->response = $response;
     }
 
     public function getContent()
     {
-        return $this->content;
+        return (string) $this->response->getBody();
     }
 
     public function toArray()
     {
-        return json_decode($this->content, true);
+        return json_decode($this->getContent(), true);
     }
 
     public function toObject()
     {
-        return json_decode($this->content);
+        return json_decode($this->getContent());
     }
+
 }

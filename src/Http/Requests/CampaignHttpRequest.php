@@ -3,27 +3,15 @@
 
 namespace Letexto\Http\Requests;
 
+use Letexto\Campaign;
 use Letexto\Exception\GatewayException;
+use Letexto\Http\Response;
 
 
 class CampaignHttpRequest extends HttpRequest
 {
     protected static string $BASE_URI = "campaigns";
 
-    /**
-     * @return string
-     * @throws GatewayException
-     */
-    public function fetchAll()
-    {
-        try {
-            $response = $this->httpClient->get($this->getUri(), $this->params());
-
-            return $this->decodeResponse($response);
-        } catch (\Exception $exception) {
-            $this->handleException($exception);
-        }
-    }
 
     /**
      * @param $campaignId
@@ -40,6 +28,17 @@ class CampaignHttpRequest extends HttpRequest
         } catch (\Exception $exception) {
             $this->handleException($exception);
         }
+    }
+
+    public function find($campaignId) : Campaign
+    {
+        $response = $this->fetch($campaignId)->toArray();
+
+        $campaign = new Campaign();
+        $campaign->withAttributes($response);
+        $campaign->setId($response["id"]);
+
+        return $campaign;
     }
 
 
@@ -85,4 +84,26 @@ class CampaignHttpRequest extends HttpRequest
             'json' => $this->params
         ];
     }
+
+    /**
+     * @param $campaignId
+     * @param $filters
+     * @return Response
+     * @throws GatewayException
+     */
+    public function fetchMessages(string $campaignId, array $filters = [])
+    {
+        $this->filterBy($filters);
+
+        $uri = self::$BASE_URI . "/$campaignId/messages?" .$this->getFormattedQueryParams();
+
+        try {
+            $response = $this->httpClient->get($uri);
+            return $this->decodeResponse($response);
+        } catch (\Exception $exception) {
+            $this->handleException($exception);
+        }
+    }
+
+
 }

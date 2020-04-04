@@ -6,6 +6,7 @@ namespace Letexto;
 
 use Letexto\Http\Requests\CampaignHttpRequest;
 use Letexto\validators\CampaignValidator;
+use Symfony\Component\Console\Exception\MissingInputException;
 
 final class Campaign
 {
@@ -21,7 +22,7 @@ final class Campaign
     private string $message = "";
     private ?array $schedules = null;
     private string $name = "";
-    private array $queryParams = [];
+    private ?string $id = null;
 
     public function __construct(array $nameAttribute = [])
     {
@@ -51,6 +52,20 @@ final class Campaign
         }
 
         return new static($nameAttribute);
+    }
+
+    /**
+     * Magic getter to facilitate the access of campaign's attributes
+     * @param $name
+     * @return mixed|null
+     */
+    public function __get($name)
+    {
+        if(isset($this->attributes[$name])) {
+            return $this->attributes[$name];
+        }
+
+        return null;
     }
 
     /**
@@ -151,6 +166,26 @@ final class Campaign
         $validator->handle();
 
         return true;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param $filters
+     * @return Http\Response
+     * @throws Exception\GatewayException
+     */
+    public function getMessages(array $filters = [])
+    {
+        if(! $this->id) {
+            throw new \InvalidArgumentException("Id of the campaign is null");
+        }
+
+        $campaignHttpRequest = new CampaignHttpRequest();
+        return $campaignHttpRequest->fetchMessages($this->id, $filters);
     }
 
 }

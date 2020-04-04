@@ -43,4 +43,5 @@ class CampaignHttpRequestTest extends TestCase
         $this->assertNotEmpty($campaignHttpRequest->getQueryParams());
         $this->assertCount(2, $campaignHttpRequest->getQueryParams());
     }
+
 }

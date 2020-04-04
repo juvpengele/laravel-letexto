@@ -3,7 +3,7 @@
     "license": "MIT",
     "description": "A Laravel package to integrate Letexto Application API",
     "type": "package",
-    "version": "0.2.2",
+    "version": "0.3.0",
     "authors": [
         {
             "name": "Juvenal PENGELE",
@@ -19,7 +19,8 @@
         "orchestra/testbench": "^5.1",
         "phpunit/phpunit": "^9.0",
         "psy/psysh": "@stable",
-        "symfony/var-dumper": "^5.0"
+        "symfony/var-dumper": "^5.0",
+        "nyholm/psr7": "^1.2"
     },
     "autoload": {
         "psr-4": {

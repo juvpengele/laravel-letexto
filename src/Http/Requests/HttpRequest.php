@@ -18,7 +18,6 @@ class HttpRequest
     protected array $queryParams = [];
 
 
-
     public function __construct()
     {
         $this->httpClient = new Client(["base_uri" => config("letexto.api_url")]);
@@ -83,8 +82,7 @@ class HttpRequest
      */
     protected function decodeResponse($response) : Response
     {
-        $content = (string) $response->getBody();
-        return new Response($content);
+        return new Response($response);
     }
 
     protected function additionalParams() : array
@@ -130,4 +128,18 @@ class HttpRequest
         return static::$BASE_URI . "?" .$this->getFormattedQueryParams();
     }
 
+    /**
+     * @return string
+     * @throws GatewayException
+     */
+    public function fetchAll()
+    {
+        try {
+            $response = $this->httpClient->get($this->getUri(), $this->params());
+
+            return $this->decodeResponse($response);
+        } catch (\Exception $exception) {
+            $this->handleException($exception);
+        }
+    }
 }
