@@ -76,11 +76,11 @@ class HttpRequest
     }
 
     /**
-     * Set the body of the response in a correct format.
+     * Get the body of the response in a correct format.
      * @param $response
      * @return Response
      */
-    protected function decodeResponse($response) : Response
+    protected function getResponse($response) : Response
     {
         return new Response($response);
     }
@@ -137,7 +137,7 @@ class HttpRequest
         try {
             $response = $this->httpClient->get($this->getUri(), $this->params());
 
-            return $this->decodeResponse($response);
+            return $this->getResponse($response);
         } catch (\Exception $exception) {
             $this->handleException($exception);
         }

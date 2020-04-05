@@ -24,7 +24,7 @@ class CampaignHttpRequest extends HttpRequest
         try {
             $response = $this->httpClient->get($uri, $this->params());
 
-            return $this->decodeResponse($response);
+            return $this->getResponse($response);
         } catch (\Exception $exception) {
             $this->handleException($exception);
         }
@@ -35,8 +35,8 @@ class CampaignHttpRequest extends HttpRequest
         $response = $this->fetch($campaignId)->toArray();
 
         $campaign = new Campaign();
-        $campaign->withAttributes($response);
-        $campaign->setId($response["id"]);
+        $campaign->withAttributes($response)
+                 ->setId($response["id"]);
 
         return $campaign;
     }
@@ -50,7 +50,7 @@ class CampaignHttpRequest extends HttpRequest
     {
         try {
             $response = $this->httpClient->post(static::$BASE_URI, $this->params());
-            $campaign = $this->decodeResponse($response)->toObject();
+            $campaign = $this->getResponse($response)->toObject();
 
             return $this->schedule($campaign);
 
@@ -69,7 +69,7 @@ class CampaignHttpRequest extends HttpRequest
         try {
             $response = $this->httpClient->post( static::$BASE_URI. "/$campaign->id/schedules");
 
-            return $this->decodeResponse($response);
+            return $this->getResponse($response);
         }  catch (\Exception $exception) {
             $this->handleException($exception);
         }
@@ -99,7 +99,7 @@ class CampaignHttpRequest extends HttpRequest
 
         try {
             $response = $this->httpClient->get($uri);
-            return $this->decodeResponse($response);
+            return $this->getResponse($response);
         } catch (\Exception $exception) {
             $this->handleException($exception);
         }

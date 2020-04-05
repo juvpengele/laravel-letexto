@@ -114,9 +114,7 @@ final class Campaign
         $this->applyValidator($mergedAttributes);
 
         $campaignHttpRequest = new CampaignHttpRequest();
-        $response = $campaignHttpRequest->addParams($mergedAttributes)->store();
-
-        return json_decode($response, true);
+        return $campaignHttpRequest->addParams($mergedAttributes)->store();
     }
 
     /**
