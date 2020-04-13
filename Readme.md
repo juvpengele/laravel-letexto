@@ -11,12 +11,14 @@ This is a package that integrate the web application [Letexto](http://letexto.co
 You can install the package via composer:
 
 ```bash
-    composer require juvpengele/laravel-letexto
+  $ composer require juvpengele/laravel-letexto
 ```
 
 You must add your API Key in the .env file
 ```dotenv
-    LETEXTO_TOKEN=my-api-token
+  .env
+	  
+  LETEXTO_TOKEN=my-api-token
 ```
 
 ## Features
@@ -28,17 +30,17 @@ All resources fetched are an instance of Letexto\Http\Response.
 - To fetch all campaigns
     
     ``` php
-         use Letexto\Campaign;
-         
-         $campaigns = Campaign::fetchAll();
+     use Letexto\Campaign;
+     
+     $campaigns = Campaign::fetchAll();
     ```
 
 - Filter campaigns to fetch
     
     ```php
-       use Letexto\Campaign;
-  
-       $campaigns = Campaign::filterBy(['status' => 'sent'])->fetchAll();
+     use Letexto\Campaign;
+
+     $campaigns = Campaign::filterBy(['status' => 'sent'])->fetchAll();
     ```
 
 - Create a campaign
@@ -47,20 +49,20 @@ All resources fetched are an instance of Letexto\Http\Response.
     Here is an example of how a campaign can be sent.
         
     ```php
-        use Letexto\Campaign;
-  
-        $campaign = Campaign::create(['name' => 'My campaign'])
-                ->withAttributes([
-                    'sender' => 'John Doe', // Add one of your application senders
-                    'recipientSource' => 'custom',
-                    'campaignType' => 'SIMPLE',
-                    'responseUrl' => 'https://mywebsite.com/campaign-feedback', // Add your response url callback    
-                ])
-                ->to([
-                    ['phone' => '22501010101']
-                ])
-                ->withMessage('Hello world')
-                ->send();
+     use Letexto\Campaign;
+
+     $campaign = Campaign::create(['name' => 'My campaign'])
+             ->withAttributes([
+                 'sender' => 'John Doe', // Add one of your application senders
+                 'recipientSource' => 'custom',
+                 'campaignType' => 'SIMPLE',
+                 'responseUrl' => 'https://mywebsite.com/campaign-feedback', // Add your response url callback    
+             ])
+             ->to([
+                 ['phone' => '22501010101']
+             ])
+             ->withMessage('Hello world')
+             ->send();
     ```
 
 ### Messages of a campaign
@@ -69,10 +71,10 @@ All resources fetched are an instance of Letexto\Http\Response.
  In this way, we can fetch messages of this campaign.
 
      ```php
-          use Letexto\Campaign;
-    
-          $campaign = Campaign::find("f9r4gegetg49getg98e49t");
-          $messages = $campaign->getMessages();
+      use Letexto\Campaign;
+
+      $campaign = Campaign::find("f9r4gegetg49getg98e49t");
+      $messages = $campaign->getMessages();
      ```
 
 
@@ -80,9 +82,9 @@ All resources fetched are an instance of Letexto\Http\Response.
 
 - We can fetch the volume of a user.
     ```php
-          use Letexto\Volume;
-          
-          $volume = Volume::fetch();
+     use Letexto\Volume;
+     
+     $volume = Volume::fetch();
     ```
 
 ## Credits
