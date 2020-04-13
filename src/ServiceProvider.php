@@ -14,6 +14,5 @@ class ServiceProvider extends LaravelServiceProvider
     }
 
     public function boot()
-    {
-    }
+    {}
 }

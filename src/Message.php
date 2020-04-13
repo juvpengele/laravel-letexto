@@ -4,7 +4,6 @@
 namespace Letexto;
 
 
-use Letexto\Http\Requests\CampaignHttpRequest;
 use Letexto\Http\Requests\MessageHttpRequest;
 
 class Message

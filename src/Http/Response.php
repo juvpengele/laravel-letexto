@@ -29,5 +29,4 @@ class Response
     {
         return json_decode($this->getContent());
     }
-
 }

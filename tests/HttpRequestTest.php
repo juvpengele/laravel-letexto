@@ -27,5 +27,4 @@ class HttpRequestTest extends TestCase
 
         $this->assertEquals("?name=juvenal&age=30", $httpRequest->getUri());
     }
-
 }

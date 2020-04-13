@@ -104,7 +104,7 @@ class HttpRequest
         $message = $exception->getMessage();
 
         Log::error($message);
-        throw new GatewayException($exception);
+        throw new GatewayException($exception->getMessage());
     }
 
     public function filterBy(array $queryParams = [])
