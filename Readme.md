@@ -3,7 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/juvpengele/laravel-letexto.svg?style=flat-square)](https://packagist.org/packages/juvpengele/laravel-letexto)
 [![Total Downloads](https://img.shields.io/packagist/dt/juvpengele/laravel-letexto.svg?style=flat-square)](https://packagist.org/packages/juvpengele/laravel-letexto)
 
-This is a package to integration the web application [Letexto](http://letexto.com) in a laravel application.
+This is a package that integrate the web application [Letexto](http://letexto.com) API in a laravel application.
 
 
 ## Installation
