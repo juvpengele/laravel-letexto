@@ -15,9 +15,9 @@ class VolumeHttpRequest extends HttpRequest
         $uri = $this->getUri();
 
         try {
-            $response = $this->httpClient->get($uri);
+            $response = $this->httpClient->get($uri, $this->defaultParams());
 
-            return new Response($response);
+            return $this->getResponse($response);
         } catch(\Exception $exception) {
             $this->handleException($exception);
         }
