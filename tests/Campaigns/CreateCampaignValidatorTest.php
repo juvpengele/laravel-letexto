@@ -134,7 +134,20 @@ class CreateCampaignValidatorTest extends TestCase
             ]
         ]);
         $validator->handle();
+    }
 
+    /** @test */
+    public function response_url_is_required()
+    {
+        $validator = new CampaignValidator([
+            "responseUrl" => "http://localhost/api"
+        ]);
+        $this->assertTrue($validator->handle());
+
+
+        $this->expectException(\InvalidArgumentException::class);
+        $validator = new CampaignValidator(["responseUrl" => "hello world"]);
+        $validator->handle();
     }
 
     /** @test */

@@ -6,7 +6,7 @@ namespace Letexto;
 
 use Letexto\Http\Requests\CampaignHttpRequest;
 use Letexto\validators\CampaignValidator;
-use Symfony\Component\Console\Exception\MissingInputException;
+
 
 final class Campaign
 {
@@ -17,6 +17,7 @@ final class Campaign
         "recipientSource" => "",
         "groupId" => "",
         "destination" => "",
+        "responseUrl" => ""
     ];
     private array $recipients = [];
     private string $message = "";
@@ -108,7 +109,7 @@ final class Campaign
             "message" => $this->message,
             "recipients" => $this->recipients,
             "sendAt" => $this->schedules,
-            "name"  => $this->name
+            "name"  => $this->name,
         ]);
 
         $this->applyValidator($mergedAttributes);

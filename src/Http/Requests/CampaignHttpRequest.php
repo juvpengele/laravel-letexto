@@ -67,7 +67,9 @@ class CampaignHttpRequest extends HttpRequest
     protected function schedule($campaign)
     {
         try {
-            $response = $this->httpClient->post( static::$BASE_URI. "/$campaign->id/schedules");
+            $response = $this->httpClient->post(
+                            static::$BASE_URI. "/$campaign->id/schedules",
+                            $this->defaultParams());
 
             return $this->getResponse($response);
         }  catch (\Exception $exception) {
@@ -98,7 +100,7 @@ class CampaignHttpRequest extends HttpRequest
         $uri = self::$BASE_URI . "/$campaignId/messages?" .$this->getFormattedQueryParams();
 
         try {
-            $response = $this->httpClient->get($uri);
+            $response = $this->httpClient->get($uri, $this->defaultParams());
             return $this->getResponse($response);
         } catch (\Exception $exception) {
             $this->handleException($exception);

@@ -52,4 +52,9 @@ class CampaignValidator extends Validator
     {
         return is_null($value) || is_array($value);
     }
+
+    protected function validateResponseUrl($value)
+    {
+        return filter_var($value, FILTER_VALIDATE_URL);
+    }
 }
