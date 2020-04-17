@@ -28,7 +28,7 @@ All resources fetched are an instance of Letexto\Http\Response.
 - To fetch all campaigns
     
     ``` php
-         use Letexto\Campaign;
+         use Letexto\Resources\Campaign;
          
          $campaigns = Campaign::fetchAll();
     ```
@@ -36,7 +36,7 @@ All resources fetched are an instance of Letexto\Http\Response.
 - Filter campaigns to fetch
     
     ```php
-       use Letexto\Campaign;
+        use Letexto\Resources\Campaign;
   
        $campaigns = Campaign::filterBy(['status' => 'sent'])->fetchAll();
     ```
@@ -47,7 +47,7 @@ All resources fetched are an instance of Letexto\Http\Response.
     Here is an example of how a campaign can be sent.
         
     ```php
-        use Letexto\Campaign;
+        use Letexto\Resources\Campaign;
   
         $campaign = Campaign::create(['name' => 'My campaign'])
                 ->withAttributes([
@@ -63,9 +63,9 @@ All resources fetched are an instance of Letexto\Http\Response.
                 ->send();
     ```
 
-### Messages of a campaign
+- Messages of a campaign
      
-- To get the messages of a campaign, we must first fetch the campaign as an instance of the Campaign class.
+    To get the messages of a campaign, we must first fetch the campaign as an instance of the Campaign class.
  In this way, we can fetch messages of this campaign.
 
      ```php
@@ -76,19 +76,48 @@ All resources fetched are an instance of Letexto\Http\Response.
      ```
 
 
+
+### Messages
+
+- To fetch all messages
+    
+    ``` php
+         use Letexto\Resources\Message;
+         
+         $messages = Message::fetchAll();
+    ```
+
+- Filter messages to fetch
+    
+    ```php
+       use Letexto\Resources\Message;
+  
+       $messages = Message::filterBy(['sender' => 'John Doe'])->fetchAll();
+    ```
+
+- To fetch statistics of messages
+    
+   ```php
+          use Letexto\Resources\Message    
+  
+          $statistics = Message::getStatistics();
+    ```
+
+
+
 ### Volume
 
-- We can fetch the volume of a user.
+- We can retrieve the volume of a user.
+
     ```php
-          use Letexto\Volume;
+          use Letexto\Resources\Volume;
           
-          $volume = Volume::fetch();
+          $volume = Volume::retrieve();
     ```
 
 ## Credits
 
 - [Juvenal Pengele](https://github.com/juvpengele)
-- [All Contributors](../../contributors)
 
 ## License
 

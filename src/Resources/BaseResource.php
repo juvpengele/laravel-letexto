@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Letexto;
+namespace Letexto\Resources;
 
 
 use Letexto\Http\Requests\HttpRequest;
