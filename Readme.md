@@ -3,7 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/juvpengele/laravel-letexto.svg?style=flat-square)](https://packagist.org/packages/juvpengele/laravel-letexto)
 [![Total Downloads](https://img.shields.io/packagist/dt/juvpengele/laravel-letexto.svg?style=flat-square)](https://packagist.org/packages/juvpengele/laravel-letexto)
 
-This is a package to integration the web application [Letexto](http://letexto.com) in a laravel application.
+This is a package that integrate the web application [Letexto](http://letexto.com) API in a laravel application.
 
 
 ## Installation
@@ -11,12 +11,14 @@ This is a package to integration the web application [Letexto](http://letexto.co
 You can install the package via composer:
 
 ```bash
-    composer require juvpengele/laravel-letexto
+  $ composer require juvpengele/laravel-letexto
 ```
 
 You must add your API Key in the .env file
 ```dotenv
-    LETEXTO_TOKEN=my-api-token
+  .env
+	  
+  LETEXTO_TOKEN=my-api-token
 ```
 
 ## Features
@@ -39,6 +41,7 @@ All resources fetched are an instance of Letexto\Http\Response.
         use Letexto\Resources\Campaign;
   
        $campaigns = Campaign::filterBy(['status' => 'sent'])->fetchAll();
+
     ```
 
 - Create a campaign
@@ -69,10 +72,10 @@ All resources fetched are an instance of Letexto\Http\Response.
  In this way, we can fetch messages of this campaign.
 
      ```php
-          use Letexto\Campaign;
-    
-          $campaign = Campaign::find("f9r4gegetg49getg98e49t");
-          $messages = $campaign->getMessages();
+      use Letexto\Campaign;
+
+      $campaign = Campaign::find("f9r4gegetg49getg98e49t");
+      $messages = $campaign->getMessages();
      ```
 
 
