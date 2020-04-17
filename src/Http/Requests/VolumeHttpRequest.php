@@ -10,7 +10,7 @@ class VolumeHttpRequest extends HttpRequest
 {
     protected static string $BASE_URI = "user-volume";
 
-    public function fetch()
+    public function retrieve()
     {
         $uri = $this->getUri();
 

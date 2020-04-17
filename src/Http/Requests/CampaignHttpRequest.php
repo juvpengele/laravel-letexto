@@ -13,23 +13,6 @@ class CampaignHttpRequest extends HttpRequest
     protected static string $BASE_URI = "campaigns";
 
 
-    /**
-     * @param $campaignId
-     * @return string
-     * @throws GatewayException
-     */
-    public function fetch($campaignId)
-    {
-        $uri = static::$BASE_URI . "/$campaignId";
-        try {
-            $response = $this->httpClient->get($uri, $this->params());
-
-            return $this->getResponse($response);
-        } catch (\Exception $exception) {
-            $this->handleException($exception);
-        }
-    }
-
     public function find($campaignId) : Campaign
     {
         $response = $this->fetch($campaignId)->toArray();

@@ -142,4 +142,21 @@ class HttpRequest
             $this->handleException($exception);
         }
     }
+
+    /**
+     * @param $resourceId
+     * @return string
+     * @throws GatewayException
+     */
+    public function fetch($resourceId)
+    {
+        $uri = static::$BASE_URI . "/$resourceId";
+        try {
+            $response = $this->httpClient->get($uri, $this->params());
+
+            return $this->getResponse($response);
+        } catch (\Exception $exception) {
+            $this->handleException($exception);
+        }
+    }
 }

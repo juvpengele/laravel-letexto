@@ -5,13 +5,13 @@ namespace Letexto;
 
 
 use Letexto\Http\Requests\CampaignHttpRequest;
+use Letexto\Http\Requests\HttpRequest;
 use Letexto\validators\CampaignValidator;
 
 
-final class Campaign
+class Campaign extends BaseResource
 {
-
-    private array $attributes = [
+    protected array $attributes = [
         "sender" => "",
         "campaignType" => "",
         "recipientSource" => "",
@@ -55,19 +55,6 @@ final class Campaign
         return new static($nameAttribute);
     }
 
-    /**
-     * Magic getter to facilitate the access of campaign's attributes
-     * @param $name
-     * @return mixed|null
-     */
-    public function __get($name)
-    {
-        if(isset($this->attributes[$name])) {
-            return $this->attributes[$name];
-        }
-
-        return null;
-    }
 
     /**
      * @param array $attributes
@@ -187,4 +174,8 @@ final class Campaign
         return $campaignHttpRequest->fetchMessages($this->id, $filters);
     }
 
+    protected static function getHttpRequestHandler(): HttpRequest
+    {
+        return new CampaignHttpRequest();
+    }
 }

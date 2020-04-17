@@ -4,9 +4,10 @@
 namespace Letexto;
 
 
+use Letexto\Http\Requests\HttpRequest;
 use Letexto\Http\Requests\MessageHttpRequest;
 
-class Message
+class Message extends BaseResource
 {
     /**
      * @param $methodName
@@ -22,5 +23,11 @@ class Message
         }
 
         throw new \BadMethodCallException($methodName . " does not exist on the instance");
+    }
+
+
+    protected static function getHttpRequestHandler(): HttpRequest
+    {
+       return new MessageHttpRequest();
     }
 }
