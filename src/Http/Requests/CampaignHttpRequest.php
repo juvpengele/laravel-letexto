@@ -3,7 +3,7 @@
 
 namespace Letexto\Http\Requests;
 
-use Letexto\Campaign;
+use LeTexto\Resources\Campaign;
 use Letexto\Exception\GatewayException;
 use Letexto\Http\Response;
 
