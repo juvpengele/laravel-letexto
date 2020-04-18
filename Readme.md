@@ -72,7 +72,7 @@ All resources fetched are an instance of Letexto\Http\Response.
  In this way, we can fetch messages of this campaign.
 
      ```php
-      use Letexto\Campaign;
+      use Letexto\Resources\Campaign;
 
       $campaign = Campaign::find("f9r4gegetg49getg98e49t");
       $messages = $campaign->getMessages();
@@ -101,9 +101,9 @@ All resources fetched are an instance of Letexto\Http\Response.
 - To fetch statistics of messages
     
    ```php
-          use Letexto\Resources\Message    
+        use Letexto\Resources\Message    
   
-          $statistics = Message::getStatistics();
+        $statistics = Message::getStatistics();
     ```
 
 
